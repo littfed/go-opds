@@ -1,8 +1,9 @@
 # go-opds
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/littfed/go-opds.svg)](https://pkg.go.dev/github.com/littfed/go-opds)
-[![Go Report Card](https://goreportcard.com/badge/github.com/littfed/go-opds)](https://goreportcard.com/report/github.com/littfed/go-opds)
 [![CI](https://github.com/littfed/go-opds/actions/workflows/ci.yml/badge.svg)](https://github.com/littfed/go-opds/actions/workflows/ci.yml)
+[![GitHub Release](https://img.shields.io/github/v/release/littfed/go-opds)](https://github.com/littfed/go-opds/releases)
+[![Go Version](https://img.shields.io/github/go-mod/go-version/littfed/go-opds)](https://github.com/littfed/go-opds)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 [English](#english) | [Русский](#русский)
