@@ -11,16 +11,17 @@ jobs:
     name: Test (Go ${{ matrix.go-version }} on ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         go-version: ['1.22', '1.23', '1.24']
         os: [ubuntu-latest, windows-latest]
 
     steps:
     - name: Check out code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
 
     - name: Set up Go
-      uses: actions/setup-go@v5
+      uses: actions/setup-go@v7
       with:
         go-version: ${{ matrix.go-version }}
         check-latest: true
@@ -29,7 +30,7 @@ jobs:
       run: go vet ./...
 
     - name: Run tests with race and coverage
-      run: go test -v -race -coverprofile=coverage.out -covermode=atomic ./...
+      run: go test -v -race "-coverprofile=coverage.out" "-covermode=atomic" ./...
 
     - name: Build examples
       run: |
@@ -41,16 +42,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Check out code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
 
     - name: Set up Go
-      uses: actions/setup-go@v5
+      uses: actions/setup-go@v7
       with:
-        go-version: '1.23'
+        go-version: 'stable'
         check-latest: true
 
     - name: Run golangci-lint
-      uses: golangci/golangci-lint-action@v6
+      uses: golangci/golangci-lint-action@v9
       with:
         version: latest
         args: --timeout=5m
@@ -60,18 +61,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Check out code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
 
     - name: Set up Go
-      uses: actions/setup-go@v5
+      uses: actions/setup-go@v7
       with:
-        go-version: '1.23'
+        go-version: 'stable'
         check-latest: true
 
     - name: Run govulncheck
-      uses: golang/govulncheck-action@v1
-      with:
-        go-version-input: '1.23'
-        go-package: ./...
-
-
+      run: go run golang.org/x/vuln/cmd/govulncheck@latest ./...
